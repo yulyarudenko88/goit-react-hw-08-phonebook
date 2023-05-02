@@ -1,35 +1,25 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 
-import { Section } from 'components/Section/Section';
-import { AddContactsForm } from 'components/AddContactsForm/AddContactsForm';
-import { ContactsList } from 'components/ContactsList/ContactsList';
-import { Filter } from 'components/Filter/Filter';
-import { Wrapper } from './App.styled';
-import Loader from 'components/Loader/Loader';
-import { fetchContacts } from 'redux/contacts/operations';
-import { selectError, selectIsLoading } from 'redux/contacts/selectors';
+import { Route, Routes } from 'react-router-dom';
+import { Layout } from 'components/Layout/Layout';
+import Home from 'pages/Home/Home';
+import Contacts from 'pages/Contacts/Contacts';
+import Register from 'pages/Register/Register';
+import Login from 'pages/Login/Login';
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   return (
-    <Wrapper>
-      <Section title="Phonebook">
-        <AddContactsForm />
-      </Section>
-      <Section title="Contacts">
-        <Filter />
-        <ContactsList />
-        {isLoading && !error && <Loader />}
-        {!isLoading && error && <p>Sorry, but something go wrong...</p>}
-      </Section>
-    </Wrapper>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+        <Route index element={<Home/>} />
+          <Route path="contacts" element={<Contacts/>} />
+          <Route path="register" element={<Register/>} />
+          <Route path="login" element={<Login/>} />
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Route>
+      </Routes>
+      
+    </>
   );
 };
