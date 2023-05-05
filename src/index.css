@@ -8,8 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #6a0dad;
- background-color: rgb(247, 247, 247);;
-  padding: 10px;
+  background-color: rgb(247, 247, 247);
 }
 
 code {
@@ -27,8 +26,7 @@ p {
   margin: 0;
 }
 
-ul
- {
+ul {
   margin: 0;
   padding: 0;
 }
