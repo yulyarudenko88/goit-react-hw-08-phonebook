@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
@@ -13,7 +14,7 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-/* 
+/*
  * Create a new user
  * POST @ /users/signup
  * body: { name, email, password }
@@ -23,11 +24,11 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/signup', credentials);
-      console.log(res.data)
       // After successful registration, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      toast.error('One of the input fields is not unique, please try again!');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -43,11 +44,13 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/login', credentials);
-      console.log(res.data)
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
+      toast.error(
+        'Sorry, something go wrong! You may not have an account... Please register'
+      );
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -79,7 +82,6 @@ export const refreshUser = createAsyncThunk(
     // Reading the token from the state via getState()
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken)
     if (persistedToken === null) {
       // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
@@ -89,7 +91,6 @@ export const refreshUser = createAsyncThunk(
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
       const res = await axios.get('/users/current');
-      console.log(res.data)
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
