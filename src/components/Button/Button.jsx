@@ -1,9 +1,26 @@
-import React from 'react';
+import { Button } from "@mui/material";
 import PropTypes from 'prop-types';
-import { Btn } from './Button.styled';
 
-export const Button = ({ children }) => <Btn>{children}</Btn>;
+export const Btn = ({ children }) => {
+  return (
+    <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{
+            mt: 3,
+            mb: 2,
+            backgroundColor: ' #b19cd9',
+            color: '#fff',
+            '&:hover': { backgroundColor: ' #9376b0' },
+            '&:focus': { backgroundColor: ' #9376b0' },
+          }}
+        >
+          { children }
+        </Button>
+  );
+};
 
-Button.propTypes = {
+Btn.propTypes = {
   children: PropTypes.string.isRequired,  
 };
