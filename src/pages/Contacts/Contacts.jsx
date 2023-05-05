@@ -5,10 +5,10 @@ import { Section } from 'components/Section/Section';
 import { AddContactsForm } from 'components/AddContactsForm/AddContactsForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import { Filter } from 'components/Filter/Filter';
-import { Wrapper } from 'components/App/App.styled';
 import Loader from 'components/Loader/Loader';
 import { fetchContacts } from 'redux/contacts/operations';
 import { selectError, selectIsLoading } from 'redux/contacts/selectors';
+import { Container } from '@mui/material';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Contacts = () => {
   }, [dispatch]);
 
   return (
-    <Wrapper>
+    <Container maxWidth="sm">
       <Section title="Phonebook">
         <AddContactsForm />
       </Section>
@@ -30,7 +30,7 @@ const Contacts = () => {
         {isLoading && !error && <Loader />}
         {!isLoading && error && <p>Sorry, but something go wrong...</p>}
       </Section>
-    </Wrapper>
+    </Container>
   );
 };
 
