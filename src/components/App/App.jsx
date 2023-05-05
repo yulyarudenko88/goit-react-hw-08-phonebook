@@ -51,7 +51,6 @@ export const App = () => {
               <RestrictedRoute redirectTo="/contacts" component={<Login />} />
             }
           />
-          {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>
     </>
