@@ -4,10 +4,10 @@ A versatile application for working with your contacts, which offers the ability
 [Live page](https://yulyarudenko88.github.io/goit-react-hw-08-phonebook/).
 
 <span>
-<img src="./src/images/phonebook_1.png" width="300" height="300" title="welcome">
+<img src="./src/images/phonebook_1.png" width="400" height="300" title="welcome">
 </span>
 <span>
-<img src="./src/images/phonebook_2.png" width="300" height="300" title="welcome">
+<img src="./src/images/phonebook_2.png" width="400" height="300" title="welcome">
 </span>
 
 ### Features:
